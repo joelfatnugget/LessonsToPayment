@@ -8,7 +8,7 @@ Come join me as I explore more about the Payments Industry and how it works. I'l
 
 Today is Day 1 of the entire learning journey. As a start, we will be exploring more about ISO8583 and what it actually is.
 
-ISO stands for the International Organisation for Standardisation—think of it as a non-governmental organisation that develops and publishes standards that apply globally. It can be for products, services, and systems. This way, everyone who adheres to it knows that there is a certain benchmark to follow in terms of consistency, safety, reliability, and quality across borders and industries.
+ISO stands for the International Organisation for Standardisation—it is a non-governmental organisation that develops and publishes standards that apply globally. It can be for products, services, and systems. This way, everyone who adheres to it knows that there is a certain benchmark to follow in terms of consistency, safety, reliability, and quality across borders and industries.
 
 > *Note: ISO can apply to a lot of things—from Cars (ISO 9001) to Food and Beverage Products (ISO 14001) and Medical Devices (ISO 13485).*
 
