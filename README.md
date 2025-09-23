@@ -42,4 +42,106 @@ _**ISO 20022**_
 
 ## Day 2: 4 Party Model *(To be completed)*
 
+Today’s focus is the **4 Party Model**, which shows how transactions move from buyer to seller.
+
+The best analogy (in Singapore) is buying coffee from Yakun — because Yakun > BreadTalk — so let’s use this familiar experience to break down the 4 Party Model!
+
 ---
+
+### The 4 Players
+When buying Yakun coffee, think of these 4 stakeholders:
+1. **You**  
+   Sleep-deprived, surviving on coffee.
+2. **Yakun**  
+   A business built on caffeinated history (pun intended).
+3. **Your Bank**  
+   Example: DBS.
+4. **Yakun’s Bank**  
+   Example: OCBC.
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/e380133d-038b-4745-8e5e-0255ef6c54b0" />
+
+---
+
+### How the 4 Party Model Works
+
+Here’s the simplified flow:
+
+1. **Card Tap**  
+   When you tap your card at the POS Machine, your card details are sent from Yakun’s point-of-sale terminal.
+
+2. **Network Transfer**  
+   The POS sends your information to the Payment Networks (Visa, Mastercard, etc.). The network encrypts and forwards it to Yakun’s bank (OCBC), which then routes it back to DBS.
+
+3. **Approval Process**  
+   DBS checks your card status, account balance, and flagging for potential fraud. Once verified, it sends an authorization signal back to the POS terminal.
+
+4. **Receipt**  
+   The POS terminal prints a receipt and the transaction completes.
+
+[<img width="1560" height="1226" alt="image" src="https://github.com/user-attachments/assets/d9821e7e-7c74-48d8-80d6-e632e79df754" />](https://www.marqeta.com/uk/demystifying-cards-guide/card-payments-ecosystem)
+
+This entire sequence is known as the **Authorization Flow**.
+
+---
+
+## The 3 Key Processes
+
+Each transaction involves three main processes:
+
+| Process        | What Happens                                                  |
+|----------------|--------------------------------------------------------------|
+| *Authorisation* | Checks if transaction is possible                            |
+| *Clearing*      | Exchanges detailed transaction data                          |
+| *Settlement*    | Actually moves money between banks                           |
+
+*You, as the consumer, generally only see the Authorisation process. Card declines happen here!*
+
+---
+
+## Digging Deeper: Process Details
+
+### Authorisation Flow  
+(Similar to above)
+
+1. Tap card at Yakun.  
+2. OCBC sends authorisation request to Visa. (This request is packed with message codes: think “secret language”).  
+3. Visa forwards it to DBS.  
+4. DBS verifies:  
+   - Card is active  
+   - Account has sufficient balance  
+   - No fraud alerts (e.g. can’t be in China and India at the same time)  
+5. DBS approves and sends code back via Visa/Mastercard to OCBC, and finally, to Yakun’s POS terminal.
+
+---
+
+### Clearing
+
+*Typically happens in batches at day’s end.*
+
+1. Yakun sends all approved transactions to OCBC.  
+2. OCBC formats and sends them to Visa/Mastercard; this is a **CLEARING file**.  
+3. Visa/Mastercard forwards the data to DBS.  
+4. DBS records the transactions.
+
+> *Note: The money hasn’t left the bank yet!*
+
+---
+
+### Settlement
+
+This is when the money moves:
+
+1. Visa calculates net amounts owed (like figuring out Splitwise IOUs).  
+2. DBS transfers $5 to Visa’s settlement account.  
+3. Visa passes funds to OCBC, after deducting network fees.  
+4. OCBC deposits the final amount into Yakun’s account.
+
+---
+
+## How Banks & Networks Profit
+- Both Visa/Mastercard and the banks take a small fee — think “gas fees” from Crypto/Web3.  
+- There are other revenue streams, but transaction fees are the most visible.
+
+
+---
+ 
