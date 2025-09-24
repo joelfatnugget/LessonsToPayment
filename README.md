@@ -1,7 +1,7 @@
 # Table of Content
 [Day 1](https://github.com/joelfatnugget/LessonsToPayment/edit/main/README.md#day-1-learning-about-iso8583)   
 [Day 2](https://github.com/joelfatnugget/LessonsToPayment/edit/main/README.md#day-2-4-party-model-to-be-completed)  
-[Day 3](https://github.com/joelfatnugget/LessonsToPayment/edit/main/README.md#day-3-message-structure)
+[Day 3](https://github.com/joelfatnugget/LessonsToPayment/edit/main/README.md#day-3-message-structure)  
 [Day 4 - To Be Completed]()  
 [Day 5 - To Be Completed]()  
 [Day 6 - To Be Completed]()  
