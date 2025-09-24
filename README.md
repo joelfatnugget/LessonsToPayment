@@ -1,3 +1,6 @@
+# Table of Content
+
+
 # LessonsToPayment
 
 Come join me as I explore more about the Payments Industry and how it works. I'll be covering one topic every day until I run out of things to talk about.
