@@ -94,7 +94,7 @@ This entire sequence is known as the **Authorization Flow**.
 
 ---
 
-## The 3 Key Processes
+### The 3 Key Processes
 
 Each transaction involves three main processes:
 
@@ -108,9 +108,9 @@ Each transaction involves three main processes:
 
 ---
 
-## Digging Deeper: Process Details
+### Digging Deeper: Process Details
 
-### Authorisation Flow  
+#### Authorisation Flow  
 (Similar to above)
 
 1. Tap card at Yakun.  
@@ -124,7 +124,7 @@ Each transaction involves three main processes:
 
 ---
 
-### Clearing
+#### Clearing
 
 *Typically happens in batches at day’s end.*
 
@@ -137,7 +137,7 @@ Each transaction involves three main processes:
 
 ---
 
-### Settlement
+#### Settlement
 
 This is when the money moves:
 
@@ -148,14 +148,14 @@ This is when the money moves:
 
 ---
 
-## How Banks & Networks Profit
+### How Banks & Networks Profit
 - Both Visa/Mastercard and the banks take a small fee — think “gas fees” from Crypto/Web3.  
 - There are other revenue streams, but transaction fees are the most visible.
 
 
 ---
 
-### Day 3: Message Structure
+## Day 3: Message Structure
 
 **Recap:**  
 Remember how we talked about messages being sent from the POS terminal to Visa's network and then moving through all the systems? Today, we will talk about how these systems communicate with each other.
@@ -164,7 +164,7 @@ You might think it’s very complex and impossible to guess or hack, but actuall
 
 ---
 
-#### Message Type Indicator (MTI)  
+### Message Type Indicator (MTI)  
 MTI is always a 4-digit numeric number with each digit having a specific meaning:
 
 | Digit Position | Meaning              | Description                          |
@@ -174,14 +174,14 @@ MTI is always a 4-digit numeric number with each digit having a specific meaning
 | 3rd Digit      | Message Function     | Describes the message’s purpose    |
 | 4th Digit      | Message Origin       | Identifies the source or flow stage|
 
-##### 1st Digit (Version)
+#### 1st Digit (Version)
 - 0xxx: 1987's version of ISO8583  
 - 1xxx: 1993's version of ISO8583  
 - 2xxx: 2003's version of ISO8583  
 - 8xxx: National use  
 - 9xxx: Private use  
 
-##### 2nd Digit (Message Class)
+#### 2nd Digit (Message Class)
 - x1xx: Authorisation Message  
 - x2xx: Financial Message  
 - x3xx: File Actions  
@@ -191,7 +191,7 @@ MTI is always a 4-digit numeric number with each digit having a specific meaning
 - x7xx: Fee Collection  
 - x8xx: Network Management  
 
-##### 3rd Digit (Message Function)
+#### 3rd Digit (Message Function)
 - xx0x: Request  
 - xx1x: Request Response  
 - xx2x: Advice  
@@ -201,7 +201,7 @@ MTI is always a 4-digit numeric number with each digit having a specific meaning
 - xx6x: Instruction  
 - xx7x: Instruction Acknowledgement  
 
-##### 4th Digit (Message Origin)
+#### 4th Digit (Message Origin)
 - xxx0: Original  
 - xxx1: Repeat  
 - xxx2: Response to Repeat  
@@ -210,7 +210,7 @@ MTI is always a 4-digit numeric number with each digit having a specific meaning
 
 ---
 
-#### MTI Examples  
+### MTI Examples  
 - **0100** = Authorisation Request  
 - **0110** = Authorisation Response  
 - **0200** = Financial Transaction Request  
@@ -229,9 +229,9 @@ Other useful MTI:
 
 ---
 
-#### Bitmaps
+### Bitmaps
 
-##### What is a Bitmap?  
+#### What is a Bitmap?  
 A bitmap is a string of binary (1s and 0s), acting like on/off switches. Each bit corresponds to a specific **Data Element number**.  
 
 - Bit set to **1** means the corresponding data element is **included** in the message.  
@@ -242,14 +242,14 @@ Think of a bitmap like a paint-by-numbers canvas:
 - If bit 2 is set, include Data Element 2  
 …and so on.
 
-##### Bitmap Structure  
+#### Bitmap Structure  
 - A bitmap contains 64 bits per block.  
 - A message must have **at least 1 bitmap** and can have up to 3 bitmaps (called primary, secondary, and tertiary).  
   - 1 bitmap = 64 bits  
   - 2 bitmaps = 128 bits  
   - 3 bitmaps = 192 bits  
 
-##### Single Bitmap Example  
+#### Single Bitmap Example  
 Hex bitmap: `4210001102C04804`  
 Binary (64 bits):  
 ```
@@ -260,24 +260,24 @@ Binary (64 bits):
 - The first hex digit `4` equals binary `0100` meaning bit 2 is set to 1, so Data Element 2 is present.  
 - Bits for Data Element 7, 12, etc., are also present as indicated by the respective bits set to 1.
 
-##### Secondary Bitmap Present  
+#### Secondary Bitmap Present  
 A bitmap with secondary bitmap presence starts with a hex digit like `C` which in binary is `1100`.  
 - The first bit being 1 means the secondary bitmap (bits 65 to 128) is also present.
 - For example, if bit 65 is set, Data Element 65 is present.
 
-##### How to Read Bitmap  
+#### How to Read Bitmap  
 **Always convert from Hexadecimal → Binary** to clearly see which bits (data elements) are present.
 
 Tertiary bitmaps exist but are rarely used.
 
 ---
 
-#### Bitmap and Credit Card Messages  
+### Bitmap and Credit Card Messages  
 Each bitmap acts as a map to data elements within the message. This allows efficient construction by sending only necessary fields based on transaction type or stage, instead of sending all data fields.
 
 ---
 
-#### Data Elements  
+### Data Elements  
 
 Data elements are individual fields in a message:  
 - A Message = MTI + Bitmap + Data Elements
@@ -290,14 +290,14 @@ Examples:
 
 There can be up to 128 data elements when secondary bitmap is included.
 
-##### Role of Data Elements  
+#### Role of Data Elements  
 Data elements hold all the necessary transaction details: authorisation, amounts, reconciliation, etc. Their presence depends on the bitmap.
 
 ---
 
-#### Handling Fixed and Variable Length Data Elements
+### Handling Fixed and Variable Length Data Elements
 
-##### Fixed Length Example  
+#### Fixed Length Example  
 - DE3 (Processing Code) = fixed 6 digits  
 - DE4 (Transaction Amount) = fixed 12 digits  
 Example:  
@@ -306,7 +306,7 @@ Example:
 
 Means 6 digits for DE3, then 12 digits for DE4.
 
-##### Variable Length Example (DE2 - PAN)  
+#### Variable Length Example (DE2 - PAN)  
 DE2 has variable length indicated by the first 2 digits specifying length.
 
 Example:  
