@@ -227,6 +227,9 @@ Other useful MTI:
 - 0800: Network Management Request (log on/off or heartbeat signal)  
 - 0810: Network Management Response  
 
+<img width="1272" height="693" alt="image" src="https://github.com/user-attachments/assets/c2a271bb-453d-4e76-b04d-70c878a13c02" />
+<img width="790" height="768" alt="image" src="https://github.com/user-attachments/assets/dfa95983-040f-4c7b-baf3-5952cd678408" />
+
 ---
 
 ### Bitmaps
@@ -275,6 +278,10 @@ Tertiary bitmaps exist but are rarely used.
 ### Bitmap and Credit Card Messages  
 Each bitmap acts as a map to data elements within the message. This allows efficient construction by sending only necessary fields based on transaction type or stage, instead of sending all data fields.
 
+  <img width="1101" height="502" alt="image" src="https://github.com/user-attachments/assets/39814334-1104-450d-be6f-e2383c568054" />  
+
+<img width="1774" height="446" alt="image" src="https://github.com/user-attachments/assets/c0c64af6-0fde-41c1-a381-6e4c381dc9c4" />  
+
 ---
 
 ### Data Elements  
@@ -322,6 +329,7 @@ Split:
 - `16` indicates DE2 length is 16 digits: `4532012345678901`  
 - DE3 is next 6 digits `000000`  
 - DE4 is next 12 digits `000000012345`  
+<img width="1251" height="442" alt="image" src="https://github.com/user-attachments/assets/8047cf43-e911-42d1-83b1-88f8917a1606" />
 
 ---
 
@@ -333,5 +341,10 @@ A message consists of three parts:
 - **Data Elements:** Actual transaction data (PAN, amount, timestamp, etc.)  
 
 Messages use numerical data, not text, to efficiently communicate transaction details, telling the story behind every transaction — whether a barber experience gone wrong, or a birthday cake to your wife.
+
+Resources:
+[https://www.youtube.com/watch?v=SiCbF8phxhA&t=105s](https://www.youtube.com/watch?v=SiCbF8phxhA)  
+[Payment Card Tools - Build your own Bitmap](https://paymentcardtools.com/iso-8583-bitmap)  
+[Hexdecimal to Binary](https://www.rapidtables.com/convert/number/hex-to-binary.html?x=4210001102C04804)
 
 ---
