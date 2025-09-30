@@ -2,7 +2,7 @@
 [Day 1 - Learning about ISO8583](https://github.com/joelfatnugget/LessonsToPayment/blob/main/README.md#day1-learning-about-iso8583)   
 [Day 2 - 4 Party Model](https://github.com/joelfatnugget/LessonsToPayment/blob/main/README.md#day-2-4-party-model)  
 [Day 3 - Message Structure](https://github.com/joelfatnugget/LessonsToPayment/blob/main/README.md#day-3-message-structure)  
-[Day 4 - To Be Completed]()  
+[Day 4 - Reversal & Advice Messages (Still on MTI & Fields)](https://github.com/joelfatnugget/LessonsToPayment/blob/main/README.md#day-4-reversal--advice-messages-still-on-mti--fields)  
 [Day 5 - To Be Completed]()  
 [Day 6 - To Be Completed]()  
 [Day 7 - To Be Completed]()  
@@ -348,3 +348,63 @@ Resources:
 [Hexdecimal to Binary](https://www.rapidtables.com/convert/number/hex-to-binary.html?x=4210001102C04804)
 
 ---
+
+
+## Day 4: Reversal & Advice Messages (Still on MTI & Fields)
+
+### Reversal
+There are a few instances where Merchants would want to reverse the transaction.
+
+1. Transaction was authorised but cannot be completed  
+2. Transaction was completed but there was an error  
+3. Acquirer/Merchant must release the hold on funds  
+
+Recall that in Day 3 we talked about MTI and one of the MTI is 0400/0410 which are the reversal codes.  
+- **0400** is the request  
+- **0410** is the response  
+
+If you think about the flow, using our analogy of buying Kaya toast from Yakun:  
+
+- When you tap your card, the message being sent is **0100 (Transaction Request)** and the response is **0110 (Transaction Response)** → This is the Approved Transaction.  
+- When they have accidentally charged you too much, they will call for a reversal of the transaction.  
+- They will send **0400 (Reverse Request)** and the POS should ideally receive a **0410 (Reverse Response)**.  
+
+In this particular request/response, it will send quite a few codes, but notably there are:  
+- **DE2**: PAN Number (Permanent Account Number)  
+- **DE3**: Processing Code  
+- **DE4**: Transaction Amount  
+- **DE37**: Retrieval Reference No (This is the transaction ID for the Approved Transaction)  
+- **DE39**: Response Code  
+- **DE90**: Original Data Elements  
+
+Issuer will then use DE37 to find the original authorisation & reverse it.  
+
+**Note:** Reversal Message is different from Advice Messages.  
+
+---
+
+### Advice
+Advice Messages usually tell issuers (in this case DBS Bank) about a transaction that has already happened & does not require any authorisation. They usually refer to this message as informational messaging (meaning money does not flow).  
+
+Types of advice messages:  
+- **0120** Authorisation Advice  
+- **0121** Authorisation Advice Response  
+- **0220** Financial Advice  
+- **0221** Financial Advice Response  
+- **0420** Reversal Advice  
+- **0421** Reversal Advice Response  
+
+---
+
+### TLDR
+- **Reversal** is to undo a particular transaction.  
+  - It happens usually after authorisation but before settlement (clearing phase).  
+  - It requires approval from the banks.  
+  - Sends a **0400** and receives a **0410** message.  
+
+- **Advice** is informational only.  
+  - It happens after the transaction completes.  
+  - It does not require approval.  
+  - Example flows: send **0120** and receive **0121**, or send **0220** and receive **0221**.  
+
+Hence, there is a big difference between the two. **DO NOT** confuse yourself with these.
