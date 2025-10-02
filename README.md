@@ -408,3 +408,60 @@ Types of advice messages:
   - Example flows: send **0120** and receive **0121**, or send **0220** and receive **0221**.  
 
 Hence, there is a big difference between the two. **DO NOT** confuse yourself with these.
+---
+
+
+## Day 5: Data Element 2 (Primary Account Number) and Security considerations
+
+DE2 (PAN) or Data Element 2 - Primary Account Number is one of the most important data elements being transmitted during card payment transaction. As a developer or even just a mere card holder, you need to be very careful in terms of how we utilise DE2. In the hands of the wrong user, it can be detrimental. 
+
+### DE2 (PAN)
+- This is Data Element Field that is used to transmit the Cardholder's Primary Account Number  
+- It is usually 13 - 19 Digits and Uniquely identifies the Cardholder's payment card. (Hence that is why it is so sensitive)  
+- It is present in transaction requests and response message, most notably in any Message Type Indicator involving the MTI (0100, 0200, and 0400)  
+
+> **Fun fact:**  
+> The first digit of the PAN is known as the Major Industry Identifier - MII in short (i.e. Mastercard, Visa, American Express)  
+> - American Express starts with 3  
+> - Visa starts with 4  
+> - Mastercard starts with 5  
+
+> **Fun fact continued:**  
+> I was curious and went to ask about 1 and 2. Did you know that 1 is for Airline industry and 2 is for Airlines, financial and other future industry assignments?  
+>  
+> You might be thinking, why? It's simply because in early days the electronic payment systems and card issuers were closely linked with airline companies and travel-related services.  
+>  
+> Which kind of makes sense because those would be the biggest ticket item you would buy. Payments associated with airline tickets and related travel expenses were a very important use case in the earlier days of the card payments.  
+>  
+> (Consider searching and reading up about ISO7812)  
+
+![Stripe Image](https://github.com/user-attachments/assets/b2ce31d1-ca1e-4f23-9753-d1554d052a1e)  
+*Taken from Stripe's Website*  
+
+The first digit is the Major Industry identifier (MII) while the next 5 - 7 digits are your issuers identification number or the Bank Identification, this identifies the card's issuing institution. Subsequent digits are your individual account identifier. Final Digit is a check digit. It uses **Luhn Algorithm** to validate the PAN's integrity.  
+
+---
+
+### EVEN MORE FUN FACT
+
+#### Magstripe Card
+Those old enough will recall that there is a process where you swipe your card and it will transfer the data. This process is call magstripe card. These cards tend to send the "unencrypted" PAN digit across the entire network. This allows for vulnerability to occur and hence it is slowly being phased out. When swiped the magstripe reader reads this static data including the Primary Account Number (PAN) and sends it to the payment processor without encryption.  
+
+Inside Magstripe, there are 3 different tracks:  
+- Track 1 and Track 2 contains the PAN and expiration date  
+- Track 3 is less frequently used, although in Germany Track 3 is used for debit card transactions  
+
+> **Warning:**  
+> This allows for skimming attacks where fraudsters capture the static data and clone a similar card with a similar PAN number and commits fraud that way. Remember the PAN does not change for every transaction.  
+>  
+> Thus if you were to send the PAN, you are exposing yourself.  
+
+#### EMV Chip Card (Dip) Payment
+This is slightly more secure as it will automatically generate a unique cryptographic transaction code for each payment, hence the PAN is being encrypted before sending it across the network. Only the Payment Processor will be able to decrypt everything. Hence, it protects the data in transit and at rest within the merchant's environment.  
+
+#### Tokenization (Most Secured)
+This is the most secured as the token replaces PAN during transactions; the real PAN is not being exposed. This is more secured as the tokens are transaction-specific. Real PAN are not being exposed to the merchants/processors during transaction. These are also what powers your Apple Pay and Google Pay (though there are some differences).  
+
+---
+
+So the next time you are at Yakun making your payment, the safest method to pay the Aunty is through Paywave or Tap to Pay. **Remember cash is our number 1 competitor HAHA.**
