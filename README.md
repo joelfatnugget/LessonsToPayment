@@ -3,7 +3,7 @@
 [Day 2 - 4 Party Model](https://github.com/joelfatnugget/LessonsToPayment/blob/main/README.md#day-2-4-party-model)  
 [Day 3 - Message Structure](https://github.com/joelfatnugget/LessonsToPayment/blob/main/README.md#day-3-message-structure)  
 [Day 4 - Reversal & Advice Messages (Still on MTI & Fields)](https://github.com/joelfatnugget/LessonsToPayment/blob/main/README.md#day-4-reversal--advice-messages-still-on-mti--fields)  
-[Day 5 - To Be Completed]()  
+[Day 5 - Data Element 2 & Security Considerations](https://github.com/joelfatnugget/LessonsToPayment/blob/main/README.md#day-5-data-element-2-primary-account-number-and-security-considerations)  
 [Day 6 - To Be Completed]()  
 [Day 7 - To Be Completed]()  
 [Day 8 - To Be Completed]()  
@@ -408,9 +408,9 @@ Types of advice messages:
   - Example flows: send **0120** and receive **0121**, or send **0220** and receive **0221**.  
 
 Hence, there is a big difference between the two. **DO NOT** confuse yourself with these.
+
+
 ---
-
-
 ## Day 5: Data Element 2 (Primary Account Number) and Security considerations
 
 DE2 (PAN) or Data Element 2 - Primary Account Number is one of the most important data elements being transmitted during card payment transaction. As a developer or even just a mere card holder, you need to be very careful in terms of how we utilise DE2. In the hands of the wrong user, it can be detrimental. 
@@ -462,6 +462,10 @@ This is slightly more secure as it will automatically generate a unique cryptogr
 #### Tokenization (Most Secured)
 This is the most secured as the token replaces PAN during transactions; the real PAN is not being exposed. This is more secured as the tokens are transaction-specific. Real PAN are not being exposed to the merchants/processors during transaction. These are also what powers your Apple Pay and Google Pay (though there are some differences).  
 
+_(I will cover the topic of Tokenization another day, it is big enough for a topic on it's own)_
+
+
 ---
 
-So the next time you are at Yakun making your payment, the safest method to pay the Aunty is through Paywave or Tap to Pay. **Remember cash is our number 1 competitor HAHA.**
+So the next time you are at Yakun making your payment, the safest method to pay the Aunty is through Paywave or Tap to Pay. **Remember cash is our number 1 competitor HAHA.** 
+
