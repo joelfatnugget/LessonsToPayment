@@ -469,3 +469,29 @@ _(I will cover the topic of Tokenization another day, it is big enough for a top
 
 So the next time you are at Yakun making your payment, the safest method to pay the Aunty is through Paywave or Tap to Pay. **Remember cash is our number 1 competitor HAHA.** 
 
+---
+
+## Day 6 (Data Element 4 and Data Element 7) 
+
+### DE4: Amount, Transaction
+DE4 actually holds the value of the transaction amount being processed. What is interesting is actually the limits of DE4. How do I make a payment for coffee that is $1 and how do I make a payment for a Handbag that is $10,000? It goes through the exact same process but the question is how then is do I ensure that the system is robust enough to handle both operations. 
+
+Simply put, the DE4 is a 12-digit numerical field hence. For a transaction amount of $23.45, this would mean that the 12 digit would be represented as "000000023450". But naturally the question of how then about the currencies with a lot of 0s (i.e. Korean Won, or Indoensia Rupiah)? Well the answer is always to keep it in the smallest unit of the currency, padded to 12. 
+
+If you are paying for an item in indonesia that cost 1 Million Rupiah, it would be "000100000000" (8 Zeros after 1, and then padded with 0s infront). Thus the maximum price that you can pay at a merchant is 999,999,999,999 Rupiah and that is about 1 trilion Indonesia Rupiah. Which is roughly 78 Million SGD. 
+
+DE4 is closely linked to DE49 due to the currency code. Note: There is no Decimal point as it takes the smallest unit of currency (refers to DE49) and makes that payment. This is essential for clearing and settlement (recall Day 2). Additionally, it can contain zero value for non-financial transactions like balance inquiries where money does not move.
+
+DE4 IS CRUCIAL in card payment systems as it ensures the exact value involved in the transaction is communicated clearly.
+
+### DE7: Transmission Date and Time
+This is important as it gives you the timestamp indicating when the transaction message was sent. It has 10 digits, MMDDhhmmss. THis is important as it will combine with other Data Elements (namely DE11 System Trace Audit Number & DE37 Retrieval Reference Number) to give the transaction a rather unique identification. 
+
+It would be critical for synchronisation and for detection of duplicate or even replaced attacks in high-volume transaction. 
+
+Important! DE7 actually helps in terms of fraud detection. It looks at things like Timestamp verification, duplication detection Pattern Analysis, Synchronisation. It is important, as you can't be using the card for a transaction in China at 10am and at 11am you are off in USA using the same card for another transaction. Hence, all these messages must be checked and there has to be some level of fraud detection that goes on almost instantly such that payment can flow. All of this responsibility lies on the shoulders of your payment networks (Visa, Mastercard, American Express etc)
+
+Hence, it is important to know that Both DE4 for Amount and DE7 Transmission Date Time, are critical and vital. These 2 Data elements are necessary to ensure that there is some legitimacy when it comes to transactions. You need to ensure the almost all (if not all) transaction are legitimate and important before it gets processed.
+
+
+
