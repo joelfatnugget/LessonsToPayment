@@ -494,4 +494,63 @@ Important! DE7 actually helps in terms of fraud detection. It looks at things li
 Hence, it is important to know that Both DE4 for Amount and DE7 Transmission Date Time, are critical and vital. These 2 Data elements are necessary to ensure that there is some legitimacy when it comes to transactions. You need to ensure the almost all (if not all) transaction are legitimate and important before it gets processed.
 
 
+---
+# Credit Cards
 
+## Day 7: Fraud Checks & Risk Scoring
+Fraud detection is the process of determining potentially unauthorised or suspicious card transaction. I would stop here if I wasn't working in the payment industry, but since I am working in this industry, I will give you more. Fraud detection is the process of determining potentially unauthorised or suspicious card transaction by analysing the data elements within ISO8583 transaction messages. These messages are what we have studied over the past few sessions. From MTI to the different Fields and how they are being sent, these are all important as it gives us clues to determine whether it is a fraud or just merely a proper and legitimate transaction. 
+
+Data Elements (DE) such as transaction type, amount, merchant category code, POS Entry mode etc... are all important as we try to decipher whether a card transaction is legitimate or not. 
+
+Some Key important Data Elements for Fraud detection:
+- DE2 --> PAN Number
+- DE3 --> Processing Code
+- DE4 --> Amount
+- DE7 --> Date Time
+- DE 18 --> Merchant Category Code (MCC) | 4 Digit Number that classifies the primary product or services. 
+- DE22 --> POS Entry Mode | Whether it was contactless, Magstripe or Even Chip Dip
+- DE32 --> Acquiring Instituition ID
+- DE37 --> Retrieval Reference No | We talked about this previously. It refers to transaction ID 
+- DE41 --> Terminal ID
+- DE49 --> Currency Code
+
+SO when it comes to Fraud detection, Visa has multiple Fraud Detection tools. 
+### 1. Visa Advance Authorisation
+VAA is a real-time risk scoring system, this means that every Visa Transaction will be analyzed as it travels through VisaNet (Visa's Network) and produce a risk score. This Risk score will then be assessed by the issuer such that they can accept, decline or challenge transactions. This means that sometimes if your card is decline, it may not be that your bank does not have money but rather that the risk score is too low such that they reject it.
+
+VAA processes billions of data points and uses advanced machine learning models to deliver almost instant insights. This is such a critical function and a lot of money has been poured into this such that Visa can support this infrastructure. The risk score and relevant transaction context are relayed to the issuer during the authorisation flow (recall that there are 3 parts: Authorisation, Clearing and Settlement. 
+
+### 2. Visa Risk Manager
+Visa Risk Manager is used by issuers to customize and automate real-time rule management for fraud prevention. Think of it as issuers are allowed to go in and adjust the threshold such that they will allow or reject the transactions. Too high of a threshold, and you end up not being able to sell as much as you would like, you end up turning customers away. Too low of a threshold, and you end up not being able to receive your money. The transaction will fail and you end up losing money eitherways.
+
+Thus it is important to look at the product you are selling and determine the threshold. Naturally, the more expensive your product, the higher you would like to put the threshold such that you allow those who are determined to have enough to purchase and you don't lose money that way. 
+
+VRM allows for you to monitor and adjust fraud strategies almost instantaneously, ensuring coverage across the transaction lifecycle.
+
+What is interesting about these 2 products is that both are done realtime. From the moment you tap, these messages are being sent, AI is checking whether your card is fradulent and then it needs to come back to your POS terminal in a matter of seconds. 
+
+VAA Data is sent to issuers in real-time during the authorisation process. These system use transaction attributes from ISO8583 to get the Risk Score. 
+
+What is even more interesting is that in most regions, Visa actually also does a check on a merchants (i.e the shops selling you the product). Visa requires merchant to use VMSS (Visa Merchant Screening Service) which actually checks Merchants for a history of fraudulent transactions. 
+
+Merchants that commit fraud must be added to VMSS within 1 day notice. 
+
+Furthermore, those activity with higher risk associated tend to require a greater risk score. These activities include:
+1. Gambling
+2. Adult Entertainment
+3. Digital Currencies (Crypto)
+4. Quasi-Cash Merchant --> I.e. The act of placing a Wager, purchase of lottery ticket, spread betting etc
+5. High Chargeback Merchant --> Travel, Subscription Services etc
+
+It's so interesting because Visa has actually entered the Crypto Space and yet as a company we still feel it is considered a high risk activity. It's so hard to balance everything.
+
+
+---
+Mastercard has it's own version also:
+1. Mastercard Decision Intelligence
+This is an AI Powered Fraud detection. It uses user history, device data, merchant patterns, network signals to predict the likelihood of fraud. Similar to Visa's Advance Authorisation, if the score falls below the predetermined threshold, it will be flagged for review or even decline. High scores leads to instant approval and a frictionless customer experience. 
+2. Consumer Fraud Risk (AI-based Scam detection)
+This is similar but it is used to detect and prevent scam-related fraud and social engineering attacks. This focuses on identifying behavioral anomalies, scam patterns and account takeover.
+
+
+Apologies for not going deep into Mastercard's technologies because they have multiple products. Just that they have multiple products that fragment the entire process and makes it slightly harder to understand. Will try to understand it another day. 
