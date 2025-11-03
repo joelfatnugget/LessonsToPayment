@@ -4,9 +4,9 @@
 [Day 3 - Message Structure](https://github.com/joelfatnugget/LessonsToPayment/blob/main/README.md#day-3-message-structure)  
 [Day 4 - Reversal & Advice Messages (Still on MTI & Fields)](https://github.com/joelfatnugget/LessonsToPayment/blob/main/README.md#day-4-reversal--advice-messages-still-on-mti--fields)  
 [Day 5 - Data Element 2 & Security Considerations](https://github.com/joelfatnugget/LessonsToPayment/blob/main/README.md#day-5-data-element-2-primary-account-number-and-security-considerations)  
-[Day 6 - To Be Completed]()  
-[Day 7 - To Be Completed]()  
-[Day 8 - To Be Completed]()  
+[Day 6 - Data Element 4 and Data Element 7]()  
+[Day 7 - Fraud Checks & Risk Scoring]()  
+[Day 8 - EMV vs MagStripe]()  
 [Day 9 - To Be Completed]()  
 # LessonsToPayment
 
@@ -554,3 +554,39 @@ This is similar but it is used to detect and prevent scam-related fraud and soci
 
 
 Apologies for not going deep into Mastercard's technologies because they have multiple products. Just that they have multiple products that fragment the entire process and makes it slightly harder to understand. Will try to understand it another day. 
+
+---
+
+## Day 8: EMV vs MagStripe
+EMV stands for Europay,Mastercard and Visa. Although it is brands in an acronym, but actually it is referring to the small powerful microprocessor. Magstripe actually refers to the magnetic stripe that is usually on the back of the card and you store data on it. 
+
+Now you can think of Magstripe as a static unencrypted (you see the problem?) data. The moment you swipe your card on the terminal, it will send across your data including your name, account number, and expiraton date. This used to be the default mode of payment in the early 2000s. 
+
+It was only when EMV came out that the adoption of EMV was gradually used. EMV (also generally known as a card 'dip') works when you insert the card into the terminal, this chip then performs a calculation and generates a dynamic, one-time-use code. Some may refer to it as a cryptogram or a digital signature. And Remember it is 1 time use... so it is only valid for that single transaction. 
+
+**The reason why EMV was created**
+Magstripe greatest weakness is that it was not 1 time use. The data in the Magstripe never chagnes and thus it makes it incredibly easy to steal and simulate a replay attack (one where the attacker uses your card again). Additionally, other methods like 'Skimming' where a criminal can place a small, illegal device called a "skimmer" over a real card slot. The moment you swipe your card, the skimmer will intercept and read your data. It will then copy the data over to a memory or start to send it via the web back to the hacker's possession. The data can then be cloned onto a blank "dummy" card and then because the data is identical, this cloned card can "impersonate" your card.
+
+EMV Chip was createed to specifically prevent this type of in-person attacks. Because the chip generates it's unique, one-time code, it is somewhat of a self-destructing password. Even if someone manages to intercept, the attacker cannot reuse the code because it has already been used for it's one-time transaction. 
+
+**However**
+This is where attackers innovate and they shift to areas where we call it "card-not-present" fraud. This means they are attacking online transaction and payments. For example when you are buying taylor swift concert tickets and you have to insert in your card details, hackers can access that and start their attack. 
+
+It was due to the EMVs that attackers found it difficult to attack in-person transaction and had to shift their plans online. 
+
+*Fun fact*
+EMV took awhile to be adopted. Reason? There was a problem with liability. Who were to be at fault if there was a fradulent transaction? Before EMV, if a fradulent transaction happened in the store, the bank was typically responsible for the cost. However, after Oct 2015. The major payment networks (Visa & Mastercard) shifted the rules and implemented the rule that if a merchant were to not have an active EMV chip reader, and they accepted the fraudulent transaction, then the merchant would be held liable for the loss and not the banks themselves. 
+
+
+#### Why then do we still have Magstripe?
+The reason is simply:
+1. Backward compatibility.
+2. Fallback Mechanism
+
+**Backward Compatibility**
+Someone was telling me that in Korea, they are still using Magstripe as the common way of payment. The reason? It was ingrained in them. Their social habits took precedence. Many a times, the locals felt that using the magstripe was the best and safest way to transact. 
+
+**Fallback Mechanism**
+If the chip or card reader fails, the terminal oftens falls back onto the magstripe instead. This is less secure, but the transaction can still flow and you can still receive your good. 
+
+However. Magstripe will soon be a thing of the past. By 2033 Mastercard has announced that they will completely remove the magnetic stripes from its new cards as chip and contactless (tap-to-pay) will be the predominant method of payment. 
