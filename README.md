@@ -590,3 +590,38 @@ Someone was telling me that in Korea, they are still using Magstripe as the comm
 If the chip or card reader fails, the terminal oftens falls back onto the magstripe instead. This is less secure, but the transaction can still flow and you can still receive your good. 
 
 However. Magstripe will soon be a thing of the past. By 2033 Mastercard has announced that they will completely remove the magnetic stripes from its new cards as chip and contactless (tap-to-pay) will be the predominant method of payment. 
+
+
+
+
+---
+
+## Day 9: Message Routing (in Payments Network) - How does my Message arrive at the destination?
+It was so interesting because I was listening to a podcast recently about Data Centers and how the early days of routing used to start from 1 computer to 1 receiver via 1 route only. This meant that there was no other way to send information across if that particular network was not created. Hence, the term the podcast used was... "A Spiderweb of Nodes". This is exactly what we are talking about today but just slightly more in depth.
+
+Message routing in Payment networks are build such that it is able to send our ISO body across the network. Hence, it is important to first draw the distinction that though it is sending MTI and messages across, we are NOT talking about the individual messages that is being sent, that was covered in Day 3 when we talked about Message structure. 
+
+Tracing the Flow of a Card Payment:
+1. Terminal --> Acquirer/Gateway
+The POS terminal actually builds an ISO8583 message using all the information collected (Card Data, Amount, Merchant Info Etc). This data then gets "wired" to gateway. This connection is usually static meaning that it does not change on a daily basis.
+2. Acquirer/Gateway --> Card Network
+Acquirer will then read the message, and then normalise it to the specific scheme format and wrap it in the scheme's network header with fields that indicate whether it is a Visa card or a Mastercard. This will then decide which scheme to use based on PAN/BIN and Merchant Configuration.
+
+*BIN = Bank Identification Number
+
+3. Card Network --> Issuer
+The scheme switch uses BIN ranges and Network Tables to decide which issuer to forward the message to. Routing here is based on a few factors: Card Number (PAN/BIN), Scheme-Specific Routing IDs in the network header or in fields like the Network International Identifier and Institution IDs.
+
+4. Issuer Decision and Response Flow
+The Issuer's system then decides whether it is a fraud or if the transaction is valid. The issuer will then route it back to the acquirer (using connection state, routing tables and network header), which will then forward it back to the Merchant/Terminal.
+
+#### How to Decide the Route of the Network Transaction?
+It uses different inputs in order to decide the routing decision
+- Merchant/ Payment Service Provider / Gateway
+This is important as it decide which acquirer or processor to send to. It needs to factor many things, for example, it uses internal rules or orchestration platform (Card Brand & it's reliability, Geography, Currency, Past Performance, Cost, Regulatory Requirements)
+
+- Acquirer/ Processor
+Chooses the correct scheme based on BIN & MErchant Setup.
+
+
+Some routing can occur with intelligence. That means that the routing engine evaluates each transaction in real time and chooses the "best" provider or route using rules and live metrics. 
