@@ -4,10 +4,11 @@
 [Day 3 - Message Structure](https://github.com/joelfatnugget/LessonsToPayment/blob/main/README.md#day-3-message-structure)  
 [Day 4 - Reversal & Advice Messages (Still on MTI & Fields)](https://github.com/joelfatnugget/LessonsToPayment/blob/main/README.md#day-4-reversal--advice-messages-still-on-mti--fields)  
 [Day 5 - Data Element 2 & Security Considerations](https://github.com/joelfatnugget/LessonsToPayment/blob/main/README.md#day-5-data-element-2-primary-account-number-and-security-considerations)  
-[Day 6 - Data Element 4 and Data Element 7]()  
-[Day 7 - Fraud Checks & Risk Scoring]()  
-[Day 8 - EMV vs MagStripe]()  
-[Day 9 - To Be Completed]()  
+[Day 6 - Data Element 4 and Data Element 7](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-6-data-element-4-and-data-element-7)  
+[Day 7 - Fraud Checks & Risk Scoring](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-7-fraud-checks--risk-scoring)  
+[Day 8 - EMV vs MagStripe](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-8-emv-vs-magstripe)  
+[Day 9 - Message Routing in Payments Networks](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-9-message-routing-in-payments-network---how-does-my-message-arrive-at-the-destination)
+[Day 10 - Visa's always on Network](https://github.com/joelfatnugget/LessonsToPayment/README.md#day-10-visa-always-on-network)
 # LessonsToPayment
 
 Come join me as I explore more about the Payments Industry and how it works. I'll be covering one topic every day until I run out of things to talk about.
@@ -626,3 +627,41 @@ Chooses the correct scheme based on BIN & MErchant Setup.
 
 
 Some routing can occur with intelligence. That means that the routing engine evaluates each transaction in real time and chooses the "best" provider or route using rules and live metrics. 
+
+
+
+---
+
+## Day 10: Visa "Always on" network
+In school we learn about the CAP theory: Consistency, Availability and Partition Tolerance. Based on a distributed system, it states that a system can only provide 2 of the 3 guarantees. So out of C,A or P, engineers need to design on taking 2 out of 3 of them. 
+
+Now when you apply this to Visa's context, a thought that came to mind was what is Visa's trading in order to allow for transaction to happen every single second? Visa allows for 99.999% Availability (that's 5 9s) when it comes to availability. 
+
+Yet, the 2 questions that I have is:
+1. How does Visa ensure it is always on?
+2. What happens in the event of an outage or natural disaster? How does Visa still route messages.
+3. How does Visa's network ensure 99.999% and yet still be secure? It sounds too good to be true, especially with a legacy system.
+
+When it comes to Visa & Payments, CAP takes on a rather interesting position. It does not focus on ensuring all the nodes are on the same page, in fact it doesn't need to have all the nodes on the same page. What it does is that it focuses on Availability and Partition Tolerance. 
+
+This is crucial as these networks focuses on Availability & Partition Tolerance. By having different nodes in different regions of the world and allowing for "a spiderweb of nodes", this means that all we need to do is to increase the infrastructure such that it will allow for more nodes, in more locations, with higher throughput and bandwidth to allow for more transactions. 
+
+3 Interesting things as I was doing my research:
+1. Visa's Terminal always gets a response, hence the 99.999%
+2. Visa's Transactions routes around outages. Refer to Day 9 post, where Visa has it's own internal rules and orchestration platform.
+3. Regional Failures don't stop global payments. Money still needs to move.
+
+By trading Consistency for Availability & Partition Tolerance, Visa allows for inconsistency across it's different nodes. And that MAKES SENSE. Because each transaction stays in it's own lane. There is no need for another node in Canada to know you are making a purchase of Yakun here in Singapore. The nodes are somewhat separated. 
+
+There is another reason why they can afford to do A and P so well (and ignore the Consistency), that's because consistency occurs at the different banks. Visa is not storing the banking details of the users. Yes it is important to hold onto the ledger and the records but most of the work is done by the banks. 
+"An incorrect approval is less damaging than a declined transaction during network partition."
+
+FUN FACT: Visa takes Availability and Partition tolerance to a whole new level. 
+For example, when a bank is unable to provide real-time responses, Visa will always Stand-In the gap and simulate the transaction on behalf of the bank, allow for 99.999% availability of transactions. Well they don't allow all transactions, but rather they only allow certain based on the authorisation parameters set by the issuers. Hence Visa will "stand in" on behalf of the issuer to approve or decline a transaction. 
+This is called a Visa STIP (Stand-In-Processing). 
+STIP used to be a rule-based process where it will take the transaction, run it against a set of rules and then decide whether to approve or decline a transaction. Now, Visa uses Generative AI in order to help decide. Visa uses a deep learning model that helps to empower VisaNet (our main transaction system running on Cobol and Mainframe) to better determine if the transaction should be allowed or not. They called it "Smarter STIP". 
+
+**Own Thoughts**
+It is interesting how GenAI is used to empower and uplift the old legacy systems. It is not to say that GenAI is here to replace everything with a ChatBot, but rather to increase the capabilities of the current legacy systems. Again it does not touch the main system as the main system still functions, but rather we are just providing wrapping the main system with more information. Really interesting to see how information becomes the most powerful tool in today's day and age. 
+
+
