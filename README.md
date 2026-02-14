@@ -663,5 +663,6 @@ STIP used to be a rule-based process where it will take the transaction, run it 
 
 **Own Thoughts**
 It is interesting how GenAI is used to empower and uplift the old legacy systems. It is not to say that GenAI is here to replace everything with a ChatBot, but rather to increase the capabilities of the current legacy systems. Again it does not touch the main system as the main system still functions, but rather we are just providing wrapping the main system with more information. Really interesting to see how information becomes the most powerful tool in today's day and age. 
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/921d1121-5bb5-44ef-a357-08962d26e040" />
 
 
