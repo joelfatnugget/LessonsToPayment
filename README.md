@@ -7,7 +7,7 @@
 [Day 6 - Data Element 4 and Data Element 7](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-6-data-element-4-and-data-element-7)  
 [Day 7 - Fraud Checks & Risk Scoring](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-7-fraud-checks--risk-scoring)  
 [Day 8 - EMV vs MagStripe](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-8-emv-vs-magstripe)  
-[Day 9 - Message Routing in Payments Networks](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-9-message-routing-in-payments-network---how-does-my-message-arrive-at-the-destination)
+[Day 9 - Message Routing in Payments Networks](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-9-message-routing-in-payments-network---how-does-my-message-arrive-at-the-destination)   
 [Day 10 - Visa's always on Network](https://github.com/joelfatnugget/LessonsToPayment/README.md#day-10-visa-always-on-network)
 # LessonsToPayment
 
