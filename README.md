@@ -9,7 +9,8 @@
 [Day 8 - EMV vs MagStripe](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-8-emv-vs-magstripe)  
 [Day 9 - Message Routing in Payments Networks](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-9-message-routing-in-payments-network---how-does-my-message-arrive-at-the-destination)   
 [Day 10 - Visa's always on Network](https://github.com/joelfatnugget/LessonsToPayment/README.md#day-10-visa-always-on-network)
-[Day 11 - Tokenisation]
+
+[Day 11 - Tokenisation](https://github.com/joelfatnugget/LessonsToPayment/README.md#day-11-tokenisation-why-does-tapping-phones-work)
 # LessonsToPayment
 
 Come join me as I explore more about the Payments Industry and how it works. I'll be covering one topic every day until I run out of things to talk about.
