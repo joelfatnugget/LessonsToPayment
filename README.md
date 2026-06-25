@@ -8,7 +8,7 @@
 [Day 7 - Fraud Checks & Risk Scoring](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-7-fraud-checks--risk-scoring)  
 [Day 8 - EMV vs MagStripe](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-8-emv-vs-magstripe)  
 [Day 9 - Message Routing in Payments Networks](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-9-message-routing-in-payments-network---how-does-my-message-arrive-at-the-destination)   
-[Day 10 - Visa's always on Network](https://github.com/joelfatnugget/LessonsToPayment/README.md#day-10-visa-always-on-network)
+[Day 10 - Visa's always on Network](https://github.com/joelfatnugget/LessonsToPayment/README.md#day-10-visa-always-on-network)  
 [Day 11 - Tokenisation](https://github.com/joelfatnugget/LessonsToPayment/README.md#day-11-tokenisation-why-does-tapping-phones-work)
 # LessonsToPayment
 
