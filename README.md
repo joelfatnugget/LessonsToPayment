@@ -9,6 +9,7 @@
 [Day 8 - EMV vs MagStripe](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-8-emv-vs-magstripe)  
 [Day 9 - Message Routing in Payments Networks](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-9-message-routing-in-payments-network---how-does-my-message-arrive-at-the-destination)   
 [Day 10 - Visa's always on Network](https://github.com/joelfatnugget/LessonsToPayment/README.md#day-10-visa-always-on-network)
+[Day 11 - Tokenisation]
 # LessonsToPayment
 
 Come join me as I explore more about the Payments Industry and how it works. I'll be covering one topic every day until I run out of things to talk about.
@@ -664,5 +665,62 @@ STIP used to be a rule-based process where it will take the transaction, run it 
 **Own Thoughts**
 It is interesting how GenAI is used to empower and uplift the old legacy systems. It is not to say that GenAI is here to replace everything with a ChatBot, but rather to increase the capabilities of the current legacy systems. Again it does not touch the main system as the main system still functions, but rather we are just providing wrapping the main system with more information. Really interesting to see how information becomes the most powerful tool in today's day and age. 
 <img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/921d1121-5bb5-44ef-a357-08962d26e040" />
+
+---
+
+## Day 11: Tokenisation (Why does tapping phones work)
+Imagine this, you are at a 7-11, you are ready to purchase your favourite chocolate milk all ready to drink that luscious thick sweet yet not diabetes inducing milk. But turns out just as you forgot your wallet. How now?
+
+Now if this was prior to 2017, you would most probably have to head home without any milk. But from 2017 onwards, you were able to use your phone to make transactions. 
+
+Those who were here on earth prior to 2017, you understand what the significance of having apple pay or samsung pay is to consumers. Today we are going to understand how tokenisation works under the hood. Some questions that you might have is "How do I know it is safe? How do I know others cannot just steal my credit card number and make payments on my behalf?"
+
+====
+Firstly, we need to understand the difference between FPAN and DPAN. FPAN or Funding Primary Account Number (FPAN) -- This is the 16 Digit number on your Credit Card. You would often hear the aunties being super careful about this credit card number and not letting everyone see, and rightfully so. It is a direct access to your bank account. This has a direct link to the bank account numbers. 
+
+On the other hand, we have something called the **DPAN** -- Device Primary Account Number. This DPAN is also 16 digits but it is not as risky as your FPAN. I'll explain more. 
+_For context (and nerds like myself), both FPAN and DPAN undergo something called Luhn's Algorithm (a simple checksum formula used to validate identification numbers like credit cards and IMEI codes)_
+
+**NOTE:** Only FPAN can charge to your bank account directly. 
+DPAN is useful because it is stored on your device hence the name Device PAN. These are usually stored on something called the Trusted Execution Environment (TEE) which is embedded into the hardware of your device. What is actually on the cloud is something called the Token Service Providers. 
+#### Token Service Providers
+Token Service Providers are entities that are responsible for creating, managing and maintaing the secure vault that maps your DPAN to your original FPAN. So yes they are storing your 16 digit tokens but it is under a very secure manner. 
+The vast manjority of TSP are done by the Card Payment Network (i.e. Mastercard, Visa and American Express)
+1. Mastercard has something called Mastercard Digital Enablement Service
+2. Visa has something called Visa Token Service
+3. AmEx has something called the American Express Token Service (AETS)
+
+All of which are important as they help to exchange the DPAN with the FPAN. Now you might be thinking why is there even an exchange? Let's go through the Provision Flow and the Transaction Flow for us to better understand the use case.
+
+_**Provisioning Flow - Adding your Card to Apple Pay**_
+1. Assume you key in your 16 digit card number. Underneath the hood Apple will send the FPAN to the DBS over an encrypted channel.
+2. DBS then verifies it is you sometimes through OTP or Push Notifications
+3. DBS then asks Visa Token Service to mint (store) a DPAN bound to this device,this particular user, together with this particular issuer.
+4. VTS then stores the mapping & returns the DPAN to the iPhone
+5. DPAN is then written into your phone's secured element
+Notice here that your FPAN is never stored on the device, but it is stored in the Token Service Provider (TSP). Additionally, DPAN is written into your phone's secured element and not exposed. This DPAN is also called a Token. That way when you tap your phone you are actually passing the DPAN, or sometimes known as a token.
+
+_**Transaction Flow -- Tapping at ~~Breadtalk~~ Yakun with your phone**_
+1. Say you are at Yakun and you have ordered your favourite Soya Milk Coffee and you tap your phone on the Payment Kiosk or what is also known as the POS terminal.
+2. Your iPhone secure element will then generate an OTP for a cryptogram (think of it as a puzzle)
+3. The moment you tap via NFC, it will send the DPAN together with the Cryptogram to the terminal
+4. The terminal then stuffs the DPAN into Data Element 2 (recall Fields in ISO8583).
+   (a) Data Element 2 = PAN Number
+   (b) Data Element 55 = Cryptogram
+5. Acquirer routes it to Visa (goes through Visa's Payment network)
+6. Visa Token Service will know it is a DPAN, swap out the DPAN for an FPAN before sending it over to DBS
+7. DBS will then approve or reject, without seeing the DPAN
+8. The transaction will then be re-routed back to the terminal where you hear a Beep.
+Somethings to take note here:
+- The DPAN alone is practically useless. You are unable to simulate transaction without a Cryptogram.
+- You need both the DPAN and the Cryptogram in order to send transactions
+- Every time you tap your Visa or Mastercard, a Cryptogram is being generated and used.
+
+[The Secret Spy Tech Inside Every Credit Card](https://www.youtube.com/watch?v=YSJY3DvnybE)
+I recommend watching the video above to take a closer look at how it actually generates a Cryptogram for a physical card.
+
+
+
+
 
 
