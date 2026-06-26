@@ -9,8 +9,8 @@
 [Day 8 - EMV vs MagStripe](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-8-emv-vs-magstripe)  
 [Day 9 - Message Routing in Payments Networks](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-9-message-routing-in-payments-network---how-does-my-message-arrive-at-the-destination)   
 [Day 10 - Visa's always on Network](https://github.com/joelfatnugget/LessonsToPayment/README.md#day-10-visa-always-on-network)  
-[Day 11 - Tokenisation](https://github.com/joelfatnugget/LessonsToPayment/README.md#day-11-tokenisation-why-does-tapping-phones-work)
-[Day 12 - PayNow]
+[Day 11 - Tokenisation](https://github.com/joelfatnugget/LessonsToPayment/README.md#day-11-tokenisation-why-does-tapping-phones-work)        
+[Day 12 - PayNow | 2 Party Model?](https://github.com/joelfatnugget/LessonsToPayment/README.md#day-12-advent-of-paynow-does-visa-have-a-part-in-this)
 # LessonsToPayment
 
 Come join me as I explore more about the Payments Industry and how it works. I'll be covering one topic every day until I run out of things to talk about.
@@ -750,7 +750,7 @@ _Another interesting thing to note is this:_
 | Interchange Fees  |   ~1.5% to 3%   | $0 for Retail |
 | Reversal of Transaction    |  Chargeback (60 to 120 Days)   | Irreversible --> Push Payment |
 | Identifier |  16 Digit DPAN/FPAN   | Mobile/UEN/NRIC |
-| Settlement |  T+1   | Mobile/UEN/NRIC |
+| Settlement |  T+1   | T+0, Real Time |
 
 Additional downsides to PayNow is that it is limited to 200K per transaction. But honestly for ordinary Singaporeans, it is more than enough. Enough to make downpayment for your BTO!
 
