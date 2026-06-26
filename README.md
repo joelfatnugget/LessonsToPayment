@@ -10,6 +10,7 @@
 [Day 9 - Message Routing in Payments Networks](https://github.com/joelfatnugget/LessonsToPayment?tab=readme-ov-file#day-9-message-routing-in-payments-network---how-does-my-message-arrive-at-the-destination)   
 [Day 10 - Visa's always on Network](https://github.com/joelfatnugget/LessonsToPayment/README.md#day-10-visa-always-on-network)  
 [Day 11 - Tokenisation](https://github.com/joelfatnugget/LessonsToPayment/README.md#day-11-tokenisation-why-does-tapping-phones-work)
+[Day 12 - PayNow]
 # LessonsToPayment
 
 Come join me as I explore more about the Payments Industry and how it works. I'll be covering one topic every day until I run out of things to talk about.
@@ -719,8 +720,50 @@ Somethings to take note here:
 [The Secret Spy Tech Inside Every Credit Card](https://www.youtube.com/watch?v=YSJY3DvnybE)
 I recommend watching the video above to take a closer look at how it actually generates a Cryptogram for a physical card.
 
+---
+
+## Day 12: Advent of PayNow (Does Visa have a part in this?)
+PayNow or PayLah! does not utilise the 4 party model. No Mastercard, No Visa, No AmEx or any other payment Network. Just 2 banks trying to communicate and transact money. 
+
+**How did PayNow Start?**
+PayNow rides on something that we all already know FAST (Fast And Secure Transfers). In 2017 PayNow became a proxy layer that sat on top of FAST. This means that PayNow starts to map Mobile, NRIC, UEN to individuals or entities bank account. This meant that we are giving identities to the bank accounts via mobile number or UEN (Unique Entity Number). 
+
+PayNow uses a proxy directory which is operated by the Banking Computer Services, which NETS has a stake in. But it is actually owned by DBS, OCBC and UOB but operated by the team over at NETS. Therefore when you key in a number, it actually looks up BCS's directory. BCS owns the directory. 
+
+Now recall that in a traditional payment transaction (on a Visa Rail), it actually undergoes 3 stages. The Authorisation, Clearing and then lastly Settlement. In this case, it is similar. 
+"Authorisation" -- PayNow -- Frontend Proxy -- A naming service that links Phone Number, NRIC, UEN to Bank Account
+(Clearing) -- FAST -- Middle Man -- underlying rail that processes retail transaction instantly 24/7 up to $200,000
+(Settlement) -- MEPS+ -- Ultimate central bank ledger where billions of dollars move between banks. 
+
+The MEPS+ helps to do the settlement between banks and reconciling the numbers across daily balances like FAST and PayNow. In the finance world, MEPS+ is also known as the Real-Time Gross Settlement (RTGS) System. Monetary Authorisation of Singapore holds reserves for each bank and therefore when PayNow debits sender's bank reserves amount at MAS, it will then credit the amount ot the receiver's bank. 
+
+So on the surface it looks like money moved immediately, however it will only actually move when MEPS+ kicks in and does the settlement. 
+_Another interesting thing to note is this:_
+- The Message Format for PayNow is actually a latest generation of ISO 20022
+- ISO20022 is actually the next generation that builds on ISO8583.
+- ISO20022 is designed for Account to Account which is perfect for PayNow transaction as it moves from Account to Account. 
 
 
+| Comparison        | Credit/Debit Cards | PayNow |
+| :---------------- | :------: | --------: |
+| 4 Party Model?    |   True   | 2 Parties |
+| Interchange Fees  |   ~1.5% to 3%   | $0 for Retail |
+| Reversal of Transaction    |  Chargeback (60 to 120 Days)   | Irreversible --> Push Payment |
+| Identifier |  16 Digit DPAN/FPAN   | Mobile/UEN/NRIC |
+| Settlement |  T+1   | Mobile/UEN/NRIC |
 
+Additional downsides to PayNow is that it is limited to 200K per transaction. But honestly for ordinary Singaporeans, it is more than enough. Enough to make downpayment for your BTO!
+
+There has also been an initiative to unified the QR code such that it will just be 1 QR code across many rails. This incentivises Corporate companies to start accepting QR codes as it is 0% fees. But notice that QR codes as a form of payment are becoming more popular across asia. In Canada and some parts of Europe, they still heavily rely on Cash as King. 
+
+But on the other side of the argument, many countries are moving into Push Payments (i.e. QR Code) for example:
+1. India has UPI
+2. Brazil has Pix
+3. US has FedNow
+4. Hong Kong has FPS
+5. Malaysia has DuitNow & Touch&Go
+6. Thailand has PromptPay
+7. AND MOST FAMOUSLY: WeChat or AliPay in China
+Payment has changed. Most of these QR code now allow you to do cross border transactions and payments but there has been efforts within Asia to allow for payments across the different countries. The keyword here is **interconnectedness**.  
 
 
